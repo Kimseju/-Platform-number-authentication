@@ -5,9 +5,9 @@ service = '' # 원하는 플랫폼을 입력하세요 ( 개발자 문서 참조 
 country = '' # 원하는 국적을 입력하세요 ( 개발자 문서 참조 )
 operator = 'any' # 수정해도되고 안해도됩니다.
 
-response = requests.post(f'https://sms-activate.org/stubs/handler_api.php?api_key={api_key}&action=getNumber&service={service}&forward=0&operator={operator}&ref=8402794&country={country}&maxPrice=maxPrice&verification=False&useCashBack=True')
-id = response.text.split(':')[1]
-number = response.text.split(':')[2]
+response = requests.post(f'https://sms-activate.org/stubs/handler_api.php?api_key={api_key}&action=getNumber&service={service}&forward=0&operator={operator}&ref=8402794&country={country}&maxPrice=maxPrice&verification=False&useCashBack=True').text
+id = response.split(':')[1]
+number = response.split(':')[2]
 print(number, id)
 
 b = requests.get(f'https://api.sms-activate.io/stubs/handler_api.php?api_key={api_key}&action=getStatus&id={id}').text
